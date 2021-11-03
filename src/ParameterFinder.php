@@ -25,13 +25,13 @@ final class ParameterFinder
         return $this->filter(function (ReflectionParameter $parameter) use ($type) {
             $parameterType = $parameter->getType();
 
-            if (! $parameterType) {
+            if ($parameterType === null) {
                 return false;
             }
 
             if ($parameterType instanceof ReflectionUnionType) {
                 foreach ($parameterType->getTypes() as $unionType) {
-                    if (in_array($unionType->getName(), $type)) {
+                    if (in_array((string) $unionType, $type)) {
                         return true;
                     }
                 }
@@ -39,7 +39,7 @@ final class ParameterFinder
                 return false;
             }
 
-            return in_array($parameterType->getName(), $type);
+            return in_array((string) $parameterType, $type);
         });
     }
 
