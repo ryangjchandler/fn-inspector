@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/ryangjchandler/fn-inspector/Check%20&%20fix%20styling?label=code%20style)](https://github.com/ryangjchandler/fn-inspector/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/ryangjchandler/fn-inspector.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/fn-inspector)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This package provides some utilities for inspecting functions (callables) in PHP. You can use it to find parameters, return types and more.
 
 ## Support development
 
@@ -13,36 +13,57 @@ If you would like to support the on going maintenance and development of this pa
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```bash
 composer require ryangjchandler/fn-inspector
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="RyanChandler\FnInspector\FnInspectorServiceProvider" --tag="fn-inspector-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="RyanChandler\FnInspector\FnInspectorServiceProvider" --tag="fn-inspector-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
 
+You can create a new instance of `FnInspector` by calling `FnInspector::new()` and passing a `string`, `array` or `callable`.
+
 ```php
-$skeleton = new RyanChandler\FnInspector();
-echo $skeleton->echoPhrase('Hello, world!');
+use RyanChandler\FnInspector\FnInspector;
+
+$inspector = FnInspector::new('strlen');
+$inspector = FnInspector::new(function () {});
+$inspector = FnInspector::new([MyClass::class, 'staticMethod']);
+$inspector = FnInspector::new([MyClass::class, 'instanceMethod']);
+```
+
+### Return Type
+
+You can retrieve the return type of a function by calling the `returnType` method.
+
+```php
+$returnType = FnInspector::new(function (): void {})
+    ->returnType()
+    ->getName();
+
+echo $returnType; // `void`
+```
+
+### Number of Parameters
+
+You can retrieve the number of parameters by calling the `numberOfParameters` method.
+
+```php
+$params = FnInspector::new(function ($name): void {})
+    ->numberOfParameters();
+
+echo $params; // `1`
+```
+
+#### Required parameters
+
+If you're only interested in required parameters, you can provide a `bool` to the `numberOfParameters` method.
+
+```php
+$params = FnInspector::new(function ($name = null): void {})
+    ->numberOfParameters(required: true);
+
+echo $params; // `0`
 ```
 
 ## Testing
