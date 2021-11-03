@@ -1,11 +1,11 @@
 {
-    "name": "vendor_slug/package_slug",
+    "name": "ryangjchandler/fn-inspector",
     "description": "A utility package that helps inspect functions in PHP.",
     "keywords": [
         "ryangjchandler",
         "package_slug"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/ryangjchandler/fn-inspector",
     "license": "MIT",
     "authors": [
         {
