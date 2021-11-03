@@ -66,7 +66,41 @@ $params = FnInspector::new(function ($name = null): void {})
 echo $params; // `0`
 ```
 
+### Parameters
 
+You can retrieve an instance of `ParameterFinder` by calling the `parameters` method. The `ParameterFinder` class provides a set of granular utilities to help you find parameters by name and type.
+
+```php
+$parameters = FnInspector::new(function ($name = null): void {})
+    ->parameters();
+```
+
+To get the first parameter in a function, use the `first` method.
+
+```php
+$first = $parameters->first()->getName(); // returns `name`.
+```
+
+If you wish to find a parameter by type, you can use the `type` method.
+
+```php
+// Returns a new instance of `ParameterFinder` with parameters matching the type provides.
+$models = $parameters->type(Model::class);
+```
+
+You can find parameters that match multiple types by providing an array to the `type` method.
+
+```php
+// Returns a new instance of `ParameterFinder` with parameters matching the types provides.
+$usersAndCustomers = $parameters->type([User::class, Customer::class]);
+```
+
+You can retrieve all parameters by calling the `all` method.
+
+```php
+// Returns an array of `ReflectionParameter` objects.
+$usersAndCustomers = $parameters->all();
+```
 
 ## Testing
 
