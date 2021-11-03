@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace RyanChandler\FnInspector;
 
 use ReflectionClass;
-use ReflectionMethod;
-use ReflectionFunctionAbstract;
 use ReflectionFunction;
+use ReflectionFunctionAbstract;
 use ReflectionObject;
 use ReflectionType;
 use TypeError;
@@ -16,7 +15,8 @@ class FnInspector
 {
     public function __construct(
         protected ReflectionFunctionAbstract $reflector
-    ) {}
+    ) {
+    }
 
     public function parameters(): ParameterFinder
     {
