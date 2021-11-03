@@ -43,3 +43,25 @@ it('can be created with class-based and object-based callable', function () {
     expect(FnInspector::new([ClassBasedCallable::class, 'noop_static']))
         ->toBeInstanceOf(FnInspector::class);
 });
+
+it('can return number of parameters', function () {
+    expect(FnInspector::new(fn () => []))
+        ->numberOfParameters()
+        ->toBe(0);
+
+    expect(FnInspector::new(fn ($foo) => []))
+        ->numberOfParameters()
+        ->toBe(1);
+
+    expect(FnInspector::new(fn ($foo = null) => []))
+        ->numberOfParameters()
+        ->toBe(1);
+
+    expect(FnInspector::new(fn ($foo) => []))
+        ->numberOfParameters(required: true)
+        ->toBe(1);
+
+    expect(FnInspector::new(fn ($foo = null) => []))
+        ->numberOfParameters(required: true)
+        ->toBe(0);
+});
