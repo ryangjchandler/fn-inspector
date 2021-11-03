@@ -1,0 +1,55 @@
+{
+    "name": "vendor_slug/package_slug",
+    "description": ":package_description",
+    "keywords": [
+        ":vendor_name",
+        "package_slug"
+    ],
+    "homepage": "https://github.com/vendor_slug/package_slug",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": ":author_name",
+            "email": "author@domain.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.2",
+        "nunomaduro/collision": "^5.3",
+        "pestphp/pest": "^1.18",
+        "pestphp/pest-plugin-parallel": "^0.3.0",
+        "phpstan/phpstan": "^0.12.98",
+        "symfony/var-dumper": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "VendorName\\Skeleton\\": "src",
+            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "VendorName\\Skeleton\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "lint": "./vendor/bin/php-cs-fixer fix",
+        "test:lint": "./vendor/bin/php-cs-fixer fix --dry-run",
+        "test:suite": "./vendor/bin/testbench package:test --parallel --no-coverage",
+        "test:types": "./vendor/bin/phpstan analyse --ansi --memory-limit=-1",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:suite"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
