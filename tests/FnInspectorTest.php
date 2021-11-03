@@ -11,19 +11,26 @@ it('can be create with closures', function () {
     expect(FnInspector::new(fn () => []))
         ->toBeInstanceOf(FnInspector::class);
 
-    expect(FnInspector::new(function () {}))
+    expect(FnInspector::new(function () {
+    }))
         ->toBeInstanceOf(FnInspector::class);
 
-    $noop = function () {};
+    $noop = function () {
+    };
 
     expect(FnInspector::new($noop))
         ->toBeInstanceOf(FnInspector::class);
 });
 
 it('can be created with class-based and object-based callable', function () {
-    $noop = new class {
-        function noop_instance() {}
-        static function noop_static() {}
+    $noop = new class() {
+        public function noop_instance()
+        {
+        }
+
+        public static function noop_static()
+        {
+        }
     };
 
     expect(FnInspector::new([$noop, 'noop_instance']))
@@ -32,9 +39,15 @@ it('can be created with class-based and object-based callable', function () {
     expect(FnInspector::new([$noop, 'noop_static']))
         ->toBeInstanceOf(FnInspector::class);
 
-    class ClassBasedCallable {
-        function noop_instance() {}
-        static function noop_static() {}
+    class ClassBasedCallable
+    {
+        public function noop_instance()
+        {
+        }
+
+        public static function noop_static()
+        {
+        }
     }
 
     expect(FnInspector::new([ClassBasedCallable::class, 'noop_instance']))
