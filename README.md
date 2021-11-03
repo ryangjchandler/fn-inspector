@@ -55,7 +55,7 @@ $params = FnInspector::new(function ($name): void {})
 echo $params; // `1`
 ```
 
-#### Required parameters
+#### Number of Required Parameters
 
 If you're only interested in required parameters, you can provide a `bool` to the `numberOfParameters` method.
 
@@ -65,6 +65,8 @@ $params = FnInspector::new(function ($name = null): void {})
 
 echo $params; // `0`
 ```
+
+
 
 ## Testing
 
