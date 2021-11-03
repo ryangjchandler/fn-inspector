@@ -40,7 +40,7 @@ class FnInspector
      */
     public static function new(array|string|callable $fn): static
     {
-        if (is_string($fn) || is_callable($fn)) {
+        if (! is_array($fn) && (is_string($fn) || is_callable($fn))) {
             return new static(new ReflectionFunction($fn));
         }
 
