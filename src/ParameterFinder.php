@@ -15,7 +15,8 @@ final class ParameterFinder
 {
     public function __construct(
         private array $parameters
-    ) {}
+    ) {
+    }
 
     public function type(string|array $type): self
     {
@@ -24,7 +25,9 @@ final class ParameterFinder
         return $this->filter(function (ReflectionParameter $parameter) use ($type) {
             $parameterType = $parameter->getType();
 
-            if (! $parameterType) return false;
+            if (! $parameterType) {
+                return false;
+            }
 
             if ($parameterType instanceof ReflectionUnionType) {
                 foreach ($parameterType->getTypes() as $unionType) {
