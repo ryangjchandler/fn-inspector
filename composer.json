@@ -27,8 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "RyanChandler\\FnInspector\\": "src",
-            "RyanChandler\\FnInspector\\Database\\Factories\\": "database/factories"
+            "RyanChandler\\FnInspector\\": "src"
         }
     },
     "autoload-dev": {
