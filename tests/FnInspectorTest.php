@@ -65,3 +65,19 @@ it('can return number of parameters', function () {
         ->numberOfParameters(required: true)
         ->toBe(0);
 });
+
+it('can return the return type', function () {
+    expect(FnInspector::new(fn () => []))
+        ->returnType()
+        ->toBeNull();
+
+    expect(FnInspector::new(fn (): array => []))
+        ->returnType()
+        ->getName()
+        ->toBe('array');
+
+    expect(FnInspector::new(fn (): array|string => []))
+        ->returnType()
+        ->__toString()
+        ->toBe('array|string');
+});
