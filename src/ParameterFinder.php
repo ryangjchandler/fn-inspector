@@ -7,7 +7,6 @@ namespace RyanChandler\FnInspector;
 use Closure;
 use ReflectionParameter;
 use ReflectionUnionType;
-use RyanChandler\FnInspector\Arr;
 
 /**
  * @property-read \ReflectionParameter[] $parameters

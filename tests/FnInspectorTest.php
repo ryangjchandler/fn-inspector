@@ -1,7 +1,6 @@
 <?php
 
 use RyanChandler\FnInspector\FnInspector;
-use RyanChandler\FnInspector\ParameterFinder;
 
 it('can be created with string-based callable', function () {
     expect(FnInspector::new('strlen'))
@@ -24,7 +23,7 @@ it('can be create with closures', function () {
 });
 
 it('can be created with class-based and object-based callable', function () {
-    $noop = new class() {
+    $noop = new class () {
         public function noop_instance()
         {
         }
