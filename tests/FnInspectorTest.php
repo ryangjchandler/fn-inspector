@@ -1,6 +1,7 @@
 <?php
 
 use RyanChandler\FnInspector\FnInspector;
+use RyanChandler\FnInspector\ParameterFinder;
 
 it('can be created with string-based callable', function () {
     expect(FnInspector::new('strlen'))
@@ -93,4 +94,53 @@ it('can return the return type', function () {
         ->returnType()
         ->__toString()
         ->toBe('array|string');
+});
+
+it('can return parameters', function () {
+    expect(FnInspector::new(fn () => []))
+        ->parameters()
+        ->all()
+        ->toBeArray()
+        ->toHaveLength(0);
+
+    expect(FnInspector::new(fn ($name) => []))
+        ->parameters()
+        ->first()
+        ->getName()
+        ->toBe('name');
+
+    expect(FnInspector::new(fn (string $name) => []))
+        ->parameters()
+        ->type('string')
+        ->first()
+        ->getName()
+        ->toBe('name');
+
+    expect(FnInspector::new(fn (string $name, string $email) => []))
+        ->parameters()
+        ->type('string')
+        ->all()
+        ->toBeArray()
+        ->toHaveLength(2);
+
+    expect(FnInspector::new(fn (string|array $foo) => []))
+        ->parameters()
+        ->type('string')
+        ->first()
+        ->getName()
+        ->toBe('foo');
+
+    expect(FnInspector::new(fn (string|array $foo, string $bar) => []))
+        ->parameters()
+        ->type('string')
+        ->all()
+        ->toBeArray()
+        ->toHaveLength(2);
+
+    expect(FnInspector::new(fn (array $foo, string $bar) => []))
+        ->parameters()
+        ->type(['string', 'array'])
+        ->all()
+        ->toBeArray()
+        ->toHaveLength(2);
 });

@@ -7,6 +7,7 @@ namespace RyanChandler\FnInspector;
 use Closure;
 use ReflectionParameter;
 use ReflectionUnionType;
+use RyanChandler\FnInspector\Arr;
 
 /**
  * @property-read \ReflectionParameter[] $parameters
@@ -58,5 +59,10 @@ final class ParameterFinder
     public function first(): ?ReflectionParameter
     {
         return Arr::first($this->parameters);
+    }
+
+    public function all(): array
+    {
+        return $this->parameters;
     }
 }
