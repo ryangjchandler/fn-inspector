@@ -1,4 +1,4 @@
-# :package_description
+# A utility package that helps inspect functions in PHP.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/vendor_slug/package_slug.svg?style=flat-square)](https://packagist.org/packages/vendor_slug/package_slug)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/vendor_slug/package_slug/run-tests?label=tests)](https://github.com/vendor_slug/package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -9,7 +9,7 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## Support development
 
-If you would like to support the on going maintenance and development of this package, please consider [sponsoring me on GitHub](https://github.com/sponsors/:vendor_name).
+If you would like to support the on going maintenance and development of this package, please consider [sponsoring me on GitHub](https://github.com/sponsors/ryangjchandler).
 
 ## Installation
 
@@ -22,13 +22,13 @@ composer require vendor_slug/package_slug
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="VendorName\Skeleton\SkeletonServiceProvider" --tag=":package_slug-migrations"
+php artisan vendor:publish --provider="RyanChandler\FnInspector\FnInspectorServiceProvider" --tag="fn-inspector-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="VendorName\Skeleton\SkeletonServiceProvider" --tag=":package_slug-config"
+php artisan vendor:publish --provider="RyanChandler\FnInspector\FnInspectorServiceProvider" --tag="fn-inspector-config"
 ```
 
 This is the contents of the published config file:
@@ -41,7 +41,7 @@ return [
 ## Usage
 
 ```php
-$skeleton = new VendorName\Skeleton();
+$skeleton = new RyanChandler\FnInspector();
 echo $skeleton->echoPhrase('Hello, world!');
 ```
 
@@ -65,7 +65,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Ryan Chandler](https://github.com/ryangjchandler)
 - [All Contributors](../../contributors)
 
 ## License
